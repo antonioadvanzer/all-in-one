@@ -21,7 +21,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.main');
     }
 
     /**
@@ -31,7 +31,35 @@ class MainController extends Controller
      */
     public function auth()
     {
-        //
+        return view('dashboard.login');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function start_session(Request $request)
+    {
+        if(Auth::attempt(['email' => $request->input('aio_email'), 'password' => $request->input('aio_pass')])) {
+            // Authentication passed...    
+            //return redirect()->intended('/');
+            return redirect('');
+        }else{
+            return redirect('/login')->with('status', '¡Cuenta no valida!');
+        }
+    }
+
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function close_session()
+    {
+        Auth::logout();
+
+        return redirect()->guest('/login');
     }
 
     /**

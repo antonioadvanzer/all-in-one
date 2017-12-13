@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+// Login
+Route::get('/login', [ 'as' => 'login', 'uses' => 'MainController@auth'])->middleware('guest');
+
+// Start session
+Route::post('/start_session', [ 'as' => 'start_session', 'uses' => 'MainController@start_session']);
+
+// Auth
+Route::group(['middleware' => 'auth.aio'], function(){
+
+    // Home
+    Route::get('/', [ 'as' => '', 'uses' => 'MainController@index']);
+
+    // Logout
+    Route::post('/logout', [ 'as' => 'close_session', 'uses' => 'MainController@close_session']);
+
 });
