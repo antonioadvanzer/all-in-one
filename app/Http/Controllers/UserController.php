@@ -25,6 +25,18 @@ class UserController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get_listUserTable()
+    {
+        $users = User::all();
+
+        return view('user.list_users', ["users" => $users]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -32,6 +44,21 @@ class UserController extends Controller
     public function create()
     {
         //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get_newUserForm()
+    {
+        $type_users = Type_User::orderBy('id','desc')->get();
+        $roles = Rol::all();
+
+        return view('user.new_user', 
+                    ["type_users" => $type_users,
+                    "roles" => $roles]);
     }
 
     /**

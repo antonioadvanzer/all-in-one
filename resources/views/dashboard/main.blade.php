@@ -206,16 +206,17 @@
                     </div>
                 </div>-->
 
-            </div>
-        </div>
+    </div>
+</div>
 
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-        /*$(document).ready(function(){
 
-            demo.initChartist();
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            /*demo.initChartist();
 
             $.notify({
                 icon: 'pe-7s-gift',
@@ -224,8 +225,10 @@
             },{
                 type: 'info',
                 timer: 4000
-            });
+            });*/
 
-        });*/
+            $("#dashboard").addClass( "active" );
+        });
     </script>
+
 @endsection

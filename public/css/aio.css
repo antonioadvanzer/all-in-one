@@ -1,0 +1,51 @@
+.modal {
+    overflow-y: auto !important;
+}
+
+.hide {
+    display: none;
+}
+
+.lfloat {
+  float: left;
+}
+
+#upload-photo {
+  width: 10rem;
+  height: 10rem;
+  background-color: #eee;
+  text-align: center;
+  cursor: pointer;
+}
+
+#upload-photo.hasImg .upload-txt {
+  display: none;
+}
+
+#upload-photo.hasImg .sc-photo {
+  display: block;
+}
+
+.upload-txt {
+  font-size: 2rem;
+  color: #ccc;
+  margin-top: 3.2rem;
+}
+
+.profile-image-cont{
+     width: 6rem;
+    height: 6rem;
+    position: absolute;
+   top: 15px;
+}
+.profile-image{
+    display: none;
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    top: 6px;
+    left: 15px;
+}
+.profile-image.hasImg{
+  display: block;
+}

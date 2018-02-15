@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
 
         Type_User::create([
             'id' => 2,
-            'name' => 'Usuario'
+            'name' => 'Normal'
         ]);
 
         User::create([

@@ -4,6 +4,7 @@
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="{{ URL::to('img/favicon.ico') }}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="_token" content="{!! csrf_token() !!}"/>
 
 	<title>{{ env('APP_NAME','All in One') }}</title>
 
@@ -24,11 +25,12 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="{{ URL::to('css/demo.css') }}" rel="stylesheet" />
 
+    <link href="{{ URL::to('css/aio.css') }}" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="{{ URL::to('css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
 
 </head>
 <body>
@@ -45,12 +47,12 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="#" class="simple-text">
                     All in One
                 </a>
             </div>
 
-            <ul class="nav">
+            <!--<ul class="nav">
                 <li class="active">
                     <a href="dashboard.html">
                         <i class="pe-7s-graph"></i>
@@ -99,7 +101,53 @@
                         <p>Upgrade to PRO</p>
                     </a>
                 </li>
+            </ul>-->
+
+            <ul class="nav">
+                <li id="dashboard" class="">
+                    <a href="{{ url('') }}">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li id="new_user">
+                    <a href="{{ url('user/nuevo_usuario') }}">
+                        <i class="pe-7s-user"></i>
+                        <p>Nuevo Usuario</p>
+                    </a>
+                </li>
+                <li id="list_users">
+                    <a href="{{ url('user/lista_usuarios') }}">
+                        <i class="pe-7s-users"></i>
+                        <p>Lista Usuarios</p>
+                    </a>
+                </li>
+                <li id="new_rol">
+                    <a href="{{ url('rol/nuevo_rol') }}">
+                        <i class="pe-7s-lock"></i>
+                        <p>Nuevo Rol</p>
+                    </a>
+                </li>
+                <li id="list_rol">
+                    <a href="{{ url('rol/lista_roles') }}">
+                        <i class="pe-7s-menu"></i>
+                        <p>Lista Roles</p>
+                    </a>
+                </li>
+                <li id="new_repository">
+                    <a href="{{ url('repository/nuevo_repositorio') }}">
+                        <i class="pe-7s-notebook"></i>
+                        <p>Nuevo Repositorio</p>
+                    </a>
+                </li>
+                <li id="list_repositories">
+                    <a href="{{ url('repository/lista_repositorios') }}">
+                        <i class="pe-7s-note"></i>
+                        <p>Lista Repositorios</p>
+                    </a>
+                </li>
             </ul>
+
     	</div>
     </div>
 
@@ -116,7 +164,8 @@
                     <a class="navbar-brand" href="#">Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
+                    
+                    <!--<ul class="nav navbar-nav navbar-left">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-dashboard"></i>
@@ -146,7 +195,7 @@
 								<p class="hidden-lg hidden-md">Search</p>
                             </a>
                         </li>
-                    </ul>
+                    </ul>-->
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -154,7 +203,8 @@
                                <p>Account</p>
                             </a>
                         </li>
-                        <li class="dropdown">
+                        
+                        <!--<li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <p>
 										Dropdown
@@ -171,7 +221,8 @@
                                 <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                               </ul>
-                        </li>
+                        </li>-->
+                        
                         <li>
                             <!--<a href="#">
                                 <p>Log out</p>
@@ -196,7 +247,7 @@
 
         <footer class="footer">
             <div class="container-fluid">
-                <nav class="pull-left">
+                <!--<nav class="pull-left">
                     <ul>
                         <li>
                             <a href="#">
@@ -219,10 +270,10 @@
                             </a>
                         </li>
                     </ul>
-                </nav>
-                <p class="copyright pull-right">
+                </nav>-->
+                <!--<p class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
+                </p>-->
             </div>
         </footer>
 
