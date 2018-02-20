@@ -35,19 +35,35 @@ class UserController extends Controller
         return response()->json($this->content, $status);    
     }
 
-        /**
+    /**
      *
      *
      * @return \Illuminate\Http\Response
      */
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
+        /*Auth::logout();
 
         $this->content['exit'] = "Success";
         $status = 200;
 
-        return response()->json($this->content, $status);
+        return response()->json($this->content, $status);*/
+
+        $request->user('api')->token()->revoke();
+
+        Auth::guard()->logout();
+
+        /*$request->session()->flush();
+
+        $request->session()->regenerate();*/
+
+        $json = [
+            'success' => true,
+            'code' => 200,
+            'message' => 'You are Logged out.',
+        ];
+
+        return response()->json($json, '200');
     }
 
     /**

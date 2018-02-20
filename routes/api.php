@@ -28,7 +28,7 @@ Route::group(['prefix' => '/aio/v1'], function(){
         Route::post('/login', 'UserController@login');
         
         //Logout
-        //Route::post('/logout', 'UserController@logout');
+        Route::post('/logout', 'UserController@logout');
     });
 
     Route::group(['middleware' => 'auth:api'], function(){
@@ -40,7 +40,7 @@ Route::group(['prefix' => '/aio/v1'], function(){
             Route::post('/user_details', 'UserController@get_currentUserDetails');
         
             //Logout
-            Route::post('/logout', 'UserController@logout');
+            //Route::post('/logout', 'UserController@logout');
         
         });
         
