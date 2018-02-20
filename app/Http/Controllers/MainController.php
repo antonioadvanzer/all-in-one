@@ -29,6 +29,16 @@ class MainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function test()
+    {
+        return response()->json(['user' => 'user']);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function auth()
     {
         return view('dashboard.login');

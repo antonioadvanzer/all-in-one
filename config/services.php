@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    /*'AllinOne App' => [
+        'client_id' => '1',
+        'client_secret' => 'wt4Fr4x914UfhBcNrLKl5WD4XYsUxlvJHW7vorOW',
+    ],*/
 ];
