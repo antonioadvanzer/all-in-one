@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             'photo' => "admin.png",
             'email' => "admin@advanzer.com",
             'password' => bcrypt("admin"),
-            'employed' => 0,
+            'employed' => 1,
             'type_user' => 1,
             'rol' => 1,
             ]);

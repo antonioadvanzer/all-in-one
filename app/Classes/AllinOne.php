@@ -29,6 +29,8 @@ class AllinOne
 
     public static $path_icons_repositories = 'img/repositories_icons';
 
+    public static $path_profile_photos = 'img/profile';
+
     /**
      * create a path format
      *

@@ -11,7 +11,9 @@
                         <h4 class="title">Nuevo Usuario</h4>
                     </div>
                     <div class="content">
-                        <form>
+                        <div id="nus" class="alert alert-success hide"><span>¡Guardado con Exito!</span></div>
+                        <div id="nuf" class="alert alert-danger hide"><span>¡Falla al Guardar!</span></div>
+                        <form id="newUser" method="post">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -22,6 +24,7 @@
                                             </div>
                                             <img id="profilePic" src="" alt="" class="profile-image"/>
                                         </div>
+                                        <div id="pp" style="visibility:hidden"></div>
                                     </div>
                                 </div>
                             </div>
@@ -30,13 +33,13 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input type="text" class="form-control" placeholder="Nombre" value="">
+                                        <input id="nu-name" name="nu-name" type="text" class="form-control" placeholder="Nombre" value="" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input id="nu-email" name="nu-email" type="email" class="form-control" placeholder="Email" required>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +48,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Contraseña</label>
-                                        <input type="password" class="form-control" placeholder="" value="">
+                                        <input id="nu-password" name="nu-password" type="password" class="form-control" placeholder="Contraseña" value="" required>
                                     </div>
                                 </div>
                             </div>
@@ -53,22 +56,23 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Tipo de Usuario</label>
+                                        <label>Perfil</label>
                                         <!--<input type="text" class="form-control" placeholder="City" value="Mike">-->
-                                        <select class="form-control">
+                                        <select id="nu-typeUser" name="nu-typeUser" class="form-control" required>
                                             @foreach($type_users as $tu)
                                                 <option value="{{$tu->id}}">{{$tu->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                <div id="elements" class="invisible">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Empleado</label>
+                                        <label>Tipo de Usuario</label>
                                         <!--<input type="text" class="form-control" placeholder="Country" value="Andrew">-->
-                                        <select class="form-control">
-                                            <option value="1">Si</option>
-                                            <option value="0">No</option>
+                                        <select id="nu-isEmployed" name="nu-isEmployed" class="form-control">
+                                            <option value="1">Empleado</option>
+                                            <option value="0">Cliente</option>
                                         </select>
                                     </div>
                                 </div>
@@ -76,12 +80,13 @@
                                     <div class="form-group">
                                         <label>Rol</label>
                                         <!--<input type="number" class="form-control" placeholder="ZIP Code">-->
-                                        <select class="form-control">
+                                        <select id="nu-rol" name="nu-rol" class="form-control">
                                             @foreach($roles as $r)
                                                 <option value="{{$r->id}}">{{$r->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
                                 </div>
                             </div>
 
@@ -130,12 +135,54 @@
 @section('script')
 
     <script type="text/javascript">
+        
         $(document).ready(function(){
 
             $("#new_user").addClass("active");
 
         });
+        
+        $("#nu-typeUser").change(function () {
+            
+            if($( this ).val() == 1){
+                $("#elements").addClass("invisible");
+            }else if($( this ).val() == 2){
+                $("#elements").removeClass("invisible");
+            }
+            
+        }).change();
+        
+        $("#newUser").on('submit',(function(e){
+            
+            $.ajaxSetup({
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            });
+            
+            e.preventDefault();
+            
+            $.ajax({
+                url: "{{ URL::to('user/nuevo_usuario') }}",
+                type: "POST",
+                data: new FormData(this),
+                dataType: "html",
+                processData: false,
+                contentType: false
+            }).done(function(data) {
+                console.log(data);
+                window.location.href = "#nus";
+                $("#nus").removeClass("hide");
+                //location.reload();
+                document.getElementById("newUser").reset();
+                document.getElementById('profilePic').src = "";
 
+            }).fail(function(data) {
+                console.log(data);
+                $("#nuf").removeClass("hide");
+                window.location.href = "#nuf";              
+            });
+            
+        }));
+        
         function openImageUploadBox(event) {
           event.preventDefault();
           event.stopPropagation();
@@ -143,7 +190,12 @@
           var input = document.createElement('input');
           input.setAttribute('type', 'file');
           input.setAttribute('accept', 'image/*');
+          input.setAttribute('id', 'nu-photo');
+          input.setAttribute('name', 'nu-photo');
           input.addEventListener('change', handleUpload);
+            
+            $('#pp').append(input);
+            
           input.click();
         }
 
@@ -184,6 +236,7 @@
             reader.readAsDataURL(file);
           }
         }
+        
     </script>
 
 @endsection

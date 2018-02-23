@@ -32,11 +32,26 @@ Route::group(['middleware' => 'auth.aio'], function(){
 
     Route::group(['prefix' => 'user'], function () {
     
+        /*
+        |---------------------
+        | Views
+        |---------------------
+        */
+
         // Form
         Route::get('/nuevo_usuario', [ 'as' => 'nuevo_usuario', 'uses' => 'UserController@get_newUserForm']);
 
         // Table
         Route::get('/lista_usuarios', [ 'as' => 'lista_usuarios', 'uses' => 'UserController@get_listUserTable']);
+
+        /*
+        |---------------------
+        | Resources
+        |---------------------
+        */
+
+        // Save
+        Route::post('/nuevo_usuario', [ 'as' => 'nuevo_usuario', 'uses' => 'UserController@store_newUser']);
 
     });
 

@@ -43,12 +43,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Rol</label>
+                                        <br>
                                         <!--<input type="number" class="form-control" placeholder="ZIP Code">-->
-                                        <select id="re-rol" name="re-rol" class="form-control">
+                                        <!--<select id="re-rol" name="re-rol" class="form-control">
                                             @foreach($roles as $r)
                                                 <option value="{{$r->id}}">{{$r->name}}</option>
                                             @endforeach
-                                        </select>
+                                        </select>-->
+                                        @foreach($roles as $r)
+                                            <input id="rol[]" name="rol[]" type="checkbox" value="{{$r->id}}">
+                                            <label>{{$r->name}}</label>
+                                            <br>
+                                        @endforeach
+                                        
                                     </div>
                                 </div>
                             </div>
